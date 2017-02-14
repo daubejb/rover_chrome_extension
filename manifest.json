@@ -1,0 +1,20 @@
+{
+    "name": "Rover | Chrome Extension",
+    "description": "Right click to search Rover from selected text",
+    "version": "1.0",
+    "manifest_version": 2,
+    "permissions": [
+        "contextMenus",
+        "tabs"
+    ],
+
+    "icons": {
+        "52": "rover_icon.png"
+    },
+
+    "background": {
+        "scripts": ["rover.js"]
+    }
+
+}
+
