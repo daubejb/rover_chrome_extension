@@ -1,6 +1,7 @@
 {
     "name": "Rover | Chrome Extension",
     "description": "Right click to search Rover from selected text",
+    "author": "Jeffrey B. Daube",
     "version": "1.0",
     "manifest_version": 2,
     "permissions": [
@@ -13,8 +14,16 @@
     },
 
     "background": {
-        "scripts": ["rover.js"]
-    }
+        "scripts": ["1p.js","rover.js", "2.js"
+        ]
+    },
+    
+    "web_accessible_resources": [
+        "1p.js",
+        "2.js"
+          
+    ],
 
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
 

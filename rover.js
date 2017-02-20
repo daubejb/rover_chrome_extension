@@ -1,21 +1,37 @@
-var rover_url_beginning = "https://rover.redhat.com/search?q=";
-var rover_url_end = "&s=0&dqo=OR&c=15&f=_lw_data_source_s:%22mojoconn-discussions%22&f=_lw_data_source_s:%22mojoconn-docs%22&f=_lw_data_source_s:%22mojoconn-files%22&f=_lw_data_source_s:%22mojoconn-posts%22&f=_lw_data_source_s:%22mojo-space-files%22&f=_lw_data_source_s:%22mojo-space-docs%22&f=_lw_data_source_s:%22mojo-space-discussions%22&f=_lw_data_source_s:%22mojo-space-posts%22&f=_lw_data_source_s:%22servicenow%22&f=_lw_data_source_s:%22pnt_portal%22&f=_lw_data_source_s:%22confluence%22&f=_lw_data_source_s:%22prod_doc_new%22";
+var rover_url_beginning = "https://rover.redhat.com/search?fq=";
+
+
 
 function search(select)
 
 {
+    s.server = "rover.redhat.com";
+    s.channel = "search";
+    s.linkTrackVars="eVar20,prop2,prop3";
+    s.eVar20 = "Rover | Chrome Extension";
+    s.prop2 = "Rover | Chrome Extension";
+    s.prop3 = "Rover | Chrome Extension";
+    s.tl(this,'o', 'Rover | Chrome Extension Clicked');    
+    
     var selectedText = select.selectionText;
+    setTimeout(function () {
     chrome.tabs.create({url:
         rover_url_beginning
         + selectedText
-        + rover_url_end
     });
+}, 100);
+    console.log(selectedText);
 }
 
 chrome.contextMenus.create(
     {
         title: "Search on Rover",
         contexts:["selection"],
-        onclick: search});
-       
+        id: "ce",
+        onclick: search
+    }
+);
+//TO-DO encode selectedText
+
+
 
